@@ -42,11 +42,16 @@ public class LivroController {
      * Endpoint para buscar um livro pelo ISBN.
      * Mapeado para: GET /api/livros/{isbn}
      */
-//    @GetMapping("/{isbn}")
     @GetMapping(path = "findByIsbn/{isbn}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Livro> buscarLivroPorIsbn(@PathVariable String isbn) {
         return livroService.findByIsbn(isbn)
                 .map(livro -> ResponseEntity.ok(livro)) // Se encontrar, retorna 200 OK com o livro
                 .orElse(ResponseEntity.notFound().build()); // Se não encontrar, retorna 404 Not Found
+    }
+
+    @DeleteMapping("/{isbn}")
+    public ResponseEntity<Void> deletarLivroPorIsbn(@PathVariable String isbn) {
+        livroService.deleteByIsbn(isbn);
+        return ResponseEntity.noContent().build(); // Retorna 204 No Content, padrão para delete
     }
 }

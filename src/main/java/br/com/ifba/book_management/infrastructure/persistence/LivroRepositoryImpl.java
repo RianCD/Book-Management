@@ -28,4 +28,9 @@ public class LivroRepositoryImpl implements LivroRepository {
     public Optional<Livro> findByIsbn(String isbn) {
         return springDataLivroRepository.findByIsbn(isbn);
     }
+
+    @Override
+    public void deleteByIsbn(String isbn) {
+        springDataLivroRepository.deleteByIsbn(isbn);
+    }
 }

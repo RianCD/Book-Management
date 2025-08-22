@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface SpringDataLivroRepository extends JpaRepository<Livro, String> {
     Optional<Livro> findByIsbn(String isbn);
+    void deleteByIsbn(String isbn);
 }

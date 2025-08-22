@@ -52,4 +52,21 @@ public class LivroServiceImpl implements LivroService {
         return Optional.ofNullable(livroRepository.findByIsbn(isbn)
                 .orElseThrow(() -> new ResourceNotFoundException("Nenhuma vacina encontrada")));
     }
+
+    @Override
+    @Transactional
+    public void deleteByIsbn(String isbn) {
+        log.info("Deletando livro com ISBN {}", isbn);
+        // Verifica se o livro existe antes de tentar deletar
+        if (livroRepository.findByIsbn(isbn).isEmpty()) {
+            throw new ResourceNotFoundException("Não foi possível deletar. Nenhum livro encontrado com o ISBN: " + isbn);
+        }
+        try {
+            livroRepository.deleteByIsbn(isbn);
+            log.info("Livro com ISBN {} deletado com sucesso", isbn);
+        } catch (DataAccessException e) {
+            log.error("Erro ao deletar livro com ISBN {}", isbn, e);
+            throw e;
+        }
+    }
 }

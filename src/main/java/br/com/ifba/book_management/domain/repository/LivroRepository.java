@@ -9,4 +9,5 @@ public interface LivroRepository {
     Livro save(Livro livro);
     List<Livro> findAll();
     Optional<Livro> findByIsbn(String isbn);
+    void deleteByIsbn(String isbn);
 }
