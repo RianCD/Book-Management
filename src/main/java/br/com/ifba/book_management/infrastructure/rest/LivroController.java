@@ -4,6 +4,7 @@ import br.com.ifba.book_management.application.service.LivroService;
 import br.com.ifba.book_management.domain.model.Livro;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,8 @@ public class LivroController {
      * Endpoint para adicionar um novo livro.
      * Mapeado para: POST /api/livros
      */
-    @PostMapping
+    @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Livro> adicionarLivro(@RequestBody Livro livro) {
         Livro livroSalvo = livroService.save(livro);
         return new ResponseEntity<>(livroSalvo, HttpStatus.CREATED);
@@ -30,7 +32,7 @@ public class LivroController {
      * Endpoint para listar todos os livros.
      * Mapeado para: GET /api/livros
      */
-    @GetMapping
+    @GetMapping(path = "/findall", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Livro>> listarTodosOsLivros() {
         List<Livro> livros = livroService.findAll();
         return ResponseEntity.ok(livros);
@@ -40,7 +42,8 @@ public class LivroController {
      * Endpoint para buscar um livro pelo ISBN.
      * Mapeado para: GET /api/livros/{isbn}
      */
-    @GetMapping("/{isbn}")
+//    @GetMapping("/{isbn}")
+    @GetMapping(path = "findByIsbn/{isbn}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Livro> buscarLivroPorIsbn(@PathVariable String isbn) {
         return livroService.findByIsbn(isbn)
                 .map(livro -> ResponseEntity.ok(livro)) // Se encontrar, retorna 200 OK com o livro
