@@ -1,0 +1,24 @@
+.search-result {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #004085;
+  color: #cce5ff;
+}
+
+.book-item-found {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-item-found strong {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.search-error {
+  text-align: center;
+  color: #ffc107;
+  font-weight: bold;
+  margin-top: 1rem;
+}

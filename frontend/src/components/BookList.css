@@ -1,0 +1,41 @@
+.book-list-container {
+  margin-top: 2rem;
+}
+
+.empty-message {
+  text-align: center;
+  color: #888;
+  font-size: 1.2rem;
+}
+
+.book-list {
+  list-style: none;
+  padding: 0;
+}
+
+.book-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  background-color: #fff;
+  color: #333; /* <-- A SOLUÇÃO PRINCIPAL AQUI */
+}
+
+.book-item strong {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+  color: #000; /* Título com um preto mais forte */
+}
+
+.book-item span {
+  color: #555; /* Mantém um cinza escuro para o autor */
+  margin-bottom: 0.5rem;
+}
+
+.book-item small {
+  color: #777; /* Mantém um cinza para o ISBN */
+  align-self: flex-end;
+}

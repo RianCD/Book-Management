@@ -1,0 +1,45 @@
+.book-form {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #f9f9f9; /* Fundo claro */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.book-form h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #333; /* <-- A SOLUÇÃO AQUI */
+}
+
+.form-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Os inputs já usam a cor de texto padrão do navegador (preto), então estão ok */
+.form-group input {
+  flex-grow: 1;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.book-form button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white; /* Texto do botão continua branco, pois o fundo é escuro */
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.book-form button:hover {
+  background-color: #0056b3;
+}

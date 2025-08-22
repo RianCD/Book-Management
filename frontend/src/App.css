@@ -1,0 +1,57 @@
+/* Garante que os containers principais ocupem 100% da altura */
+html, #root {
+  height: 100%;
+}
+
+/*
+  A MÁGICA DA CENTRALIZAÇÃO ACONTECE AQUI:
+  - Usamos o body como um container flexível.
+  - justify-content: center; => alinha no centro HORIZONTAL.
+  - align-items: center;    => alinha no centro VERTICAL.
+*/
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #1a1a1a;
+  color: #f0f2f5;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%; /* Garante que o body ocupe pelo menos a altura da tela */
+}
+
+/* Container principal da aplicação */
+.app-container {
+  width: 100%; /* Ocupa 100% da largura disponível */
+  max-width: 800px; /* Mas não passa de 800px */
+  padding: 2rem;
+  background-color: #242424;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  
+  /* Permite rolagem interna caso o conteúdo seja maior que a tela */
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #007bff;
+}
+
+header h1 {
+  font-size: 2.5rem;
+}
+
+.error-message {
+  color: #f8d7da;
+  background-color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  margin: 1rem 0;
+}
