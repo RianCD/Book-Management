@@ -7,14 +7,10 @@ import * as bookService from './api/bookService';
 import './App.css';
 
 function App() {
-  // Estado para a lista de todos os livros
   const [books, setBooks] = useState([]);
   const [listError, setListError] = useState('');
-
-  // Estado para o resultado da busca
   const [searchResult, setSearchResult] = useState(null);
   const [searchError, setSearchError] = useState('');
-
 
   const fetchBooks = async () => {
     try {
@@ -33,7 +29,7 @@ function App() {
   const handleAddBook = async (bookData) => {
     try {
       await bookService.createBook(bookData);
-      fetchBooks(); // Atualiza a lista completa
+      fetchBooks();
     } catch (err) {
       setListError('Falha ao adicionar o livro.');
       console.error(err);
@@ -42,8 +38,8 @@ function App() {
 
   const handleSearchBook = async (isbn) => {
     try {
-      setSearchError(''); // Limpa erros anteriores
-      setSearchResult(null); // Limpa resultados anteriores
+      setSearchError('');
+      setSearchResult(null);
       const response = await bookService.getBookByIsbn(isbn);
       setSearchResult(response.data);
     } catch (err) {
@@ -53,6 +49,25 @@ function App() {
         setSearchError('Falha ao buscar o livro.');
       }
       console.error(err);
+    }
+  };
+
+  // --- NOVA FUNÇÃO PARA DELETAR ---
+  const handleDeleteBook = async (isbn) => {
+    // Pede a confirmação do usuário
+    const isConfirmed = window.confirm(
+      'Tem certeza que deseja deletar este livro?'
+    );
+
+    if (isConfirmed) {
+      try {
+        await bookService.deleteBookByIsbn(isbn);
+        // Após deletar, atualiza a lista de livros para refletir a mudança
+        fetchBooks(); 
+      } catch (err) {
+        setListError(`Falha ao deletar o livro com ISBN: ${isbn}`);
+        console.error(err);
+      }
     }
   };
 
@@ -72,7 +87,8 @@ function App() {
         <hr />
 
         {listError && <p className="error-message">{listError}</p>}
-        <BookList books={books} />
+        {/* Passando a nova função para o BookList */}
+        <BookList books={books} onDelete={handleDeleteBook} />
       </main>
     </div>
   );

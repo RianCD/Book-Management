@@ -25,3 +25,7 @@ export const createBook = (bookData) => {
   // Alterado de '/' para '/save' para corresponder ao @PostMapping
   return apiClient.post('/save', bookData); 
 };
+
+export const deleteBookByIsbn = (isbn) => {
+  return apiClient.delete(`/${isbn}`);
+};
